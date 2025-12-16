@@ -6,7 +6,7 @@ metadata:
 spec:
   description: "Beginner-friendly project for NetworkPolicy demo"
   sourceRepos:
-    - "*"  # या आपका Git repo URL
+    - "https://github.com/RamitTechnical/argo-network-demo"  # या आपका Git repo URL
   destinations:
     - namespace: app-namespace
       server: https://kubernetes.default.svc
