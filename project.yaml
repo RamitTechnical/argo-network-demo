@@ -1,20 +1,38 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: AppProject
+# metadata:
+#   name: demo-network-project
+#   namespace: argocd
+# spec:
+#   description: "Beginner-friendly project for NetworkPolicy demo"
+#   sourceRepos:
+#     - "https://github.com/RamitTechnical/argo-network-demo"  # या आपका Git repo URL
+#   destinations:
+#     - namespace: app-namespace
+#       server: https://kubernetes.default.svc
+#   clusterResourceWhitelist:
+#     - group: "*"
+#       kind: "*"
+#   namespaceResourceWhitelist:
+#     - group: ""
+#       kind: Namespace
+#     - group: ""
+#       kind: NetworkPolicy
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: demo-network-project
   namespace: argocd
 spec:
-  description: "Beginner-friendly project for NetworkPolicy demo"
   sourceRepos:
-    - "https://github.com/RamitTechnical/argo-network-demo"  # या आपका Git repo URL
+  - https://github.com/RamitTechnical/argo-network-demo
   destinations:
-    - namespace: app-namespace
-      server: https://kubernetes.default.svc
+  - namespace: app-namespace
+    server: https://kubernetes.default.svc
   clusterResourceWhitelist:
-    - group: "*"
-      kind: "*"
+  - group: ""
+    kind: Namespace
   namespaceResourceWhitelist:
-    - group: ""
-      kind: Namespace
-    - group: ""
-      kind: NetworkPolicy
+  - group: networking.k8s.io
+    kind: NetworkPolicy
+
