@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: axis-service
+  namespace: app-namespace
+  labels:
+    app: axis-service
+spec:
+  containers:
+  - name: axis
+    image: nginx:latest
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: db-pod
+  namespace: app-namespace
+  labels:
+    app: db-pod
+spec:
+  containers:
+  - name: db
+    image: postgres:latest
