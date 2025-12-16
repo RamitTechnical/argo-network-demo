@@ -26,13 +26,19 @@ metadata:
 spec:
   sourceRepos:
   - https://github.com/RamitTechnical/argo-network-demo
+
   destinations:
   - namespace: app-namespace
     server: https://kubernetes.default.svc
+
   clusterResourceWhitelist:
   - group: ""
     kind: Namespace
+
   namespaceResourceWhitelist:
   - group: networking.k8s.io
     kind: NetworkPolicy
+  - group: app
+    kind: development
+
 
