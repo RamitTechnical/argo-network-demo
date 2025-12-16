@@ -4,15 +4,17 @@ metadata:
   name: network-demo-app
   namespace: argocd
 spec:
-  project: demo-network-project         # Argo CD Project नाम
+  project: demo-network-project
   source:
-    repoURL: 'https://github.com/RamitTechnical/argo-network-demo'  # आपका Git repo
-    targetRevision: main                # master/main branch
-    path: '.'                           # manifests root folder
+    repoURL: https://github.com/RamitTechnical/argo-network-demo
+    targetRevision: main
+    path: .
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: app-namespace
   syncPolicy:
     automated:
-      prune: true       # जो resource Git में नहीं हैं, उन्हें delete करेगा
-      selfHeal: true    # जो resource drift हो गए हैं, उन्हें correct करेगा
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
