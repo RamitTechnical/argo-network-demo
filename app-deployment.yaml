@@ -1,23 +1,67 @@
-apiVersion: v1
-kind: Pod
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: axis-service
+#   namespace: app-namespace
+#   labels:
+#     app: axis-service
+# spec:
+#   containers:
+#   - name: axis
+#     image: nginx:latest
+# ---
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: db-pod
+#   namespace: app-namespace
+#   labels:
+#     app: db-pod
+# spec:
+#   containers:
+#   - name: db
+#     image: postgres:latest
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: axis-service
   namespace: app-namespace
-  labels:
-    app: axis-service
 spec:
-  containers:
-  - name: axis
-    image: nginx:latest
+  replicas: 1
+  selector:
+    matchLabels:
+      app: axis-service
+  template:
+    metadata:
+      labels:
+        app: axis-service
+    spec:
+      containers:
+      - name: axis
+        image: nginx:latest
+        ports:
+        - containerPort: 80
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: db-pod
+  name: db
   namespace: app-namespace
-  labels:
-    app: db-pod
 spec:
-  containers:
-  - name: db
-    image: postgres:latest
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: postgres:latest
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_PASSWORD
+          value: postgres
