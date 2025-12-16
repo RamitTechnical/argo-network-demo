@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: network-demo-app
+  namespace: argocd
+spec:
+  project: demo-network-project         # Argo CD Project नाम
+  source:
+    repoURL: 'https://github.com/your-repo/argo-network-demo'  # आपका Git repo
+    targetRevision: HEAD                # master/main branch
+    path: '.'                           # manifests root folder
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: app-namespace
+  syncPolicy:
+    automated:
+      prune: true       # जो resource Git में नहीं हैं, उन्हें delete करेगा
+      selfHeal: true    # जो resource drift हो गए हैं, उन्हें correct करेगा
