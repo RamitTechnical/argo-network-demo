@@ -1,3 +1,24 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: network-demo-app
+#   namespace: argocd
+# spec:
+#   project: demo-network-project
+#   source:
+#     repoURL: https://github.com/RamitTechnical/argo-network-demo
+#     targetRevision: main
+#     path: .
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: app-namespace
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -17,4 +38,5 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true
+
