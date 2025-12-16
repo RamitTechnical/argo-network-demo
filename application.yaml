@@ -6,8 +6,8 @@ metadata:
 spec:
   project: demo-network-project         # Argo CD Project नाम
   source:
-    repoURL: 'https://github.com/your-repo/argo-network-demo'  # आपका Git repo
-    targetRevision: HEAD                # master/main branch
+    repoURL: 'https://github.com/RamitTechnical/argo-network-demo'  # आपका Git repo
+    targetRevision: main                # master/main branch
     path: '.'                           # manifests root folder
   destination:
     server: 'https://kubernetes.default.svc'
